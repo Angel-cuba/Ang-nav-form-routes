@@ -1,0 +1,37 @@
+.navbar {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  padding: 0 16px;
+  // position: fixed;
+  // top: 0;
+  width: 90%;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  margin-left: 5%;
+  margin-right: 5%;
+  &__logo {
+    font-size: 24px;
+    font-weight: 600;
+    color: #555;
+    text-decoration: none;
+  }
+  &__items {
+    display: flex;
+    align-items: center;
+
+    &--item {
+      margin-left: 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #555;
+      text-decoration: none;
+      &--active {
+        color: #1890ff;
+      }
+    }
+  }
+}
