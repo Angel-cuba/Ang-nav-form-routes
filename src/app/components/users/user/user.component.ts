@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { User } from '../../../../interfaces/interfaces';
 import {
   FormBuilder,
@@ -8,15 +8,19 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { UsersService } from '../../../service/users.service';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, RouterModule],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
 })
 export class UserComponent {
+
+  public service = inject(UsersService)
 
   public form: FormGroup = this.formBuilder.group({
     name: [
@@ -44,9 +48,13 @@ export class UserComponent {
     date: ['', [Validators.required]],
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+
+  constructor(private formBuilder: FormBuilder, private router: Router) {}
   saveUser() {
-    if (!this.form.valid) return;
+    if (!this.form.valid) {
+      console.error('Invalid form');
+      return;
+    };
     console.log(this.form.value);
     
 
@@ -58,6 +66,10 @@ export class UserComponent {
       date: this.form.value.date,
     }
     console.log("🚀 ~ file: user.component.ts:66 ~ UserComponent ~ saveUser ~ user:", user)
-    
+    this.service.addUser(user);
+      
+    // reset form and redirect
+    this.form.reset();
+    this.router.navigate(['/dashboard/users']);
   }
 }
