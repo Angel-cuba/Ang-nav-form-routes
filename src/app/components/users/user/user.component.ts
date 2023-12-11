@@ -7,11 +7,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
 })
@@ -23,7 +24,7 @@ export class UserComponent {
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(10),
+        Validators.maxLength(20),
         Validators.pattern('[a-zA-Z ]*'),
       ],
     ],
@@ -32,7 +33,7 @@ export class UserComponent {
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(20),
+        Validators.maxLength(40),
         Validators.email,
       ],
     ],
