@@ -20,7 +20,7 @@ export class UsersService {
       .get<any>('http://localhost:4000/users')
       .pipe(delay(1000))
       .subscribe((response) => {
-        this.#state.set({ users: response.data });
+        this.#state.set({ users: response });
       });
   }
 }
