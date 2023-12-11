@@ -17,6 +17,14 @@ export const routes: Routes = [
           );
         },
       },
+            {
+        path: 'user',
+        loadComponent() {
+          return import('./components/users/user/user.component').then(
+            (m) => m.UserComponent
+          );
+        },
+      },
       {
         path: 'about',
         loadComponent() {

@@ -1,1 +1,26 @@
-<p>user works!</p>
+<section>
+  <fieldset>
+    <legend>Editar</legend>
+    <form action="" method="post" (ngSubmit)="saveUser()" [formGroup]="form">
+      <div class="campo">
+        <label for="name">Name: </label>
+        <input type="text" id="name" name="name" formControlName="name">
+      </div>
+      <div class="campo">
+        <label for="email">Email: </label>
+        <input type="email" id="email" name="email" formControlName="email">
+      </div>
+      <div class="campo">
+        <label for="password">Password: </label>
+        <input type="text" id="password" name="password" formControlName="password">
+      </div>
+      <div class="campo">
+        <label for="date">Date: </label>
+        <input type="date" id="date" name="date" formControlName="date"> 
+      </div>
+      <div class="campo">
+        <input type="submit" value="Edit" id="edit">
+      </div>
+    </form>
+  </fieldset>
+</section>
