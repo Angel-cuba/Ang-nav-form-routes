@@ -3,13 +3,17 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { delay } from 'rxjs';
 import { User } from '../../interfaces/interfaces';
 
+type UserService = {
+  users: User[];
+};
 @Injectable({
   providedIn: 'root',
 })
+
 export class UsersService {
   private http = inject(HttpClient);
 
-  #state = signal<any>({ users: [] });
+  #state = signal<UserService>({ users: [] });
 
   public users = computed(() => this.#state().users);
   constructor() {
@@ -30,6 +34,16 @@ export class UsersService {
       .pipe(delay(1000))
       .subscribe((response) => {
         this.#state.set({ users: [...this.users(), response] });
+      });
+  }
+  async deleteUser(id: number) {
+    this.http
+      .delete<any>(`http://localhost:4000/users/${id}`)
+      .pipe(delay(1000))
+      .subscribe((response) => {
+        this.#state.set({
+          users: this.users().filter((user: { id: number }) => user.id !== id),
+        });
       });
   }
 }
