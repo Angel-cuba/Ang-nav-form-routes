@@ -1,0 +1,39 @@
+{
+  "users" : [
+    {
+      "id" : 1,
+      "name" : "John Doe",
+      "email" : "doe@example.com",
+      "password" : "123456",
+      "date" : "2017-01-01"
+    },
+    {
+      "id" : 2,
+      "name" : "Jane Doe",
+      "email" : "jane@example.com",
+      "password":"123456",
+      "date" : "2017-01-01"
+    },
+    {
+      "id" : 3,
+      "name" : "John Smith",
+      "email" : "smith@example.com",
+      "password":"123456",
+      "date" : "2017-01-01"
+    },
+    {
+      "id" : 4,
+      "name" : "Jane Smith",
+      "email" : "jane@example.com",
+      "password":"123456",
+      "date" : "2017-01-01"
+    },
+    {
+      "id" : 5,
+      "name" : "Doe",
+      "email" : "d@example.com",
+      "password":"123456",
+      "date" : "2017-01-01"
+    }
+  ]
+}
