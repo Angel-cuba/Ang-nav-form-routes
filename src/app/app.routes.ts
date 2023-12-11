@@ -47,6 +47,11 @@ export const routes: Routes = [
         redirectTo: 'users',
         pathMatch: 'full',
       },
+      {
+        path: '**',
+        redirectTo: 'users',
+        pathMatch: 'full',
+      }
     ]
   },
   {
@@ -54,4 +59,9 @@ export const routes: Routes = [
     redirectTo: '/dashboard',
     pathMatch: 'full',
   },
+  {
+    path: '**',
+    redirectTo: '/dashboard',
+    pathMatch: 'full',
+  }
 ];
