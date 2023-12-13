@@ -17,8 +17,16 @@ export const routes: Routes = [
           );
         },
       },
-            {
+      {
         path: 'user',
+        loadComponent() {
+          return import('./components/users/user/user.component').then(
+            (m) => m.UserComponent
+          );
+        },
+      },
+      {
+        path: 'user/:id',
         loadComponent() {
           return import('./components/users/user/user.component').then(
             (m) => m.UserComponent
@@ -51,8 +59,8 @@ export const routes: Routes = [
         path: '**',
         redirectTo: 'users',
         pathMatch: 'full',
-      }
-    ]
+      },
+    ],
   },
   {
     path: '',
@@ -63,5 +71,5 @@ export const routes: Routes = [
     path: '**',
     redirectTo: '/dashboard',
     pathMatch: 'full',
-  }
+  },
 ];

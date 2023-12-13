@@ -6,7 +6,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes, withViewTransitions()),
+    provideRouter(
+      routes,
+      withViewTransitions({
+        skipInitialTransition: true,
+        onViewTransitionCreated: (transition) =>
+          console.log('onViewTransitionCreated', transition),
+      })
+    ),
     importProvidersFrom(HttpClientModule),
   ],
 };

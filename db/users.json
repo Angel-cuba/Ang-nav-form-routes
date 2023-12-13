@@ -16,16 +16,9 @@
     },
     {
       "id": 5,
-      "name": "Doe",
-      "email": "d@example.com",
+      "name": "Pepito",
+      "email": "pepito@gmail.com",
       "password": "123456",
-      "date": "2017-01-01"
-    },
-    {
-      "id": 1702337595481,
-      "name": "Events",
-      "email": "anniina.houttu@gmail.com",
-      "password": "dvd",
       "date": "2023-12-22"
     },
     {
@@ -34,6 +27,13 @@
       "email": "anniina.houttu@gmail.com",
       "password": "dvd",
       "date": "2023-12-22"
+    },
+    {
+      "id": 1702372494885,
+      "name": "Maria uno",
+      "email": "araozangel842@gmail.com",
+      "password": "dvdchanged",
+      "date": "2023-12-21"
     }
   ]
 }

@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UsersService } from '../../../service/users.service';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -19,9 +19,13 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './user.component.scss',
 })
 export class UserComponent {
+  public service = inject(UsersService);
 
-  public service = inject(UsersService)
+  public route = inject(ActivatedRoute);
 
+  public isEditing:boolean = false;
+
+  public id: number = 0;
   public form: FormGroup = this.formBuilder.group({
     name: [
       '',
@@ -48,28 +52,52 @@ export class UserComponent {
     date: ['', [Validators.required]],
   });
 
-
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
+  constructor(private formBuilder: FormBuilder, private router: Router) {
+    this.route.params.subscribe((params) => {
+      const userId = params['id'];
+      if (userId) {
+        this.isEditing = true;
+        this.id = userId;
+        this.loadUser(userId);
+      }
+    });
+  }
   saveUser() {
     if (!this.form.valid) {
       console.error('Invalid form');
       return;
-    };
-    console.log(this.form.value);
-    
-
-    const user: User = {
-      id: Date.now(),
-      name: this.form.value.name,
-      email: this.form.value.email,
-      password: this.form.value.password,
-      date: this.form.value.date,
     }
-    console.log("🚀 ~ file: user.component.ts:66 ~ UserComponent ~ saveUser ~ user:", user)
-    this.service.addUser(user);
-      
-    // reset form and redirect
-    this.form.reset();
-    this.router.navigate(['/dashboard/users']);
+
+    if (!this.isEditing) {
+      const user: User = {
+        id: Date.now(),
+        name: this.form.value.name,
+        email: this.form.value.email,
+        password: this.form.value.password,
+        date: this.form.value.date,
+      };
+      this.service.addUser(user);
+
+      //! reset form and redirect
+      this.form.reset();
+      this.router.navigate(['/dashboard/users']);
+    } else {
+      const user: User = {
+        id: this.id,
+        name: this.form.value.name,
+        email: this.form.value.email,
+        password: this.form.value.password,
+        date: this.form.value.date,
+      };
+      this.service.updateUser(user.id, user);
+
+      //! reset form and redirect
+      this.form.reset();
+      this.router.navigate(['/dashboard/users']);
+    }
+  }
+
+  loadUser(id: number) {
+    this.service.getUserById(id);
   }
 }
