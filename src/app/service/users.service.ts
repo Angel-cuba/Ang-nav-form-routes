@@ -3,6 +3,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { delay } from 'rxjs';
 import { User } from '../../interfaces/interfaces';
+import { environment } from '../../environments/environment';
 
 type UserService = {
   users: User[]
@@ -20,7 +21,7 @@ type SingleUser = {
 export class UsersService {
   private http = inject(HttpClient);
 
-  url: string = 'http://localhost:4000/users';
+  url: string = environment.baseUrl;
 
   #state = signal<UserService>({ users: [] });
   #userState = signal<any>({ user: {} });
