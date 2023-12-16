@@ -19,6 +19,8 @@ type SingleUser = {
 export class UsersService {
   private http = inject(HttpClient);
 
+  url: string = 'http://localhost:4000/users';
+
   #state = signal<UserService>({ users: [] });
   #userState = signal<any>({ user: {} });
 
@@ -30,7 +32,7 @@ export class UsersService {
 
   async getUsers() {
     this.http
-      .get<User[]>('http://localhost:4000/users')
+      .get<User[]>(this.url)
       .pipe(delay(1000))
       .subscribe((response) => {
         this.#state.set({ users: response });
@@ -38,7 +40,7 @@ export class UsersService {
   }
   async addUser(user: User) {
     this.http
-      .post<User>('http://localhost:4000/users', user)
+      .post<User>(this.url, user)
       .pipe(delay(1000))
       .subscribe((response) => {
         this.#state.set({ users: [...this.users(), response] });
@@ -46,7 +48,7 @@ export class UsersService {
   }
   async deleteUser(id: number) {
     this.http
-      .delete<SingleUser>(`http://localhost:4000/users/${id}`)
+      .delete<SingleUser>(`${this.url}/${id}`)
       .pipe(delay(1000))
       .subscribe((response) => {
         this.#state.set({
@@ -57,7 +59,7 @@ export class UsersService {
 
   async updateUser(id: number, user: User) {
     this.http
-      .put<any>(`http://localhost:4000/users/${id}`, user)
+      .put<any>(`${this.url}/${id}`, user)
       .pipe(delay(1000))
       .subscribe((response) => {
         this.#state.set({
@@ -70,7 +72,7 @@ export class UsersService {
 
   async getUserById(id: number) {
     this.http
-      .get<SingleUser>(`http://localhost:4000/users/${id}`)
+      .get<SingleUser>(`${this.url}/${id}`)
       .pipe(delay(1000))
       .subscribe((response) => {
         this.#userState.set({ user: response });
