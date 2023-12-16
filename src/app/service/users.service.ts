@@ -38,6 +38,7 @@ export class UsersService {
       .pipe(delay(1000))
       .subscribe((response) => {
         this.#state.set({ users: response });
+        this.showSnackBar('Users loaded');
       });
   }
   async addUser(user: User) {
@@ -46,6 +47,7 @@ export class UsersService {
       .pipe(delay(1000))
       .subscribe((response) => {
         this.#state.set({ users: [...this.users(), response] });
+        this.showSnackBar('User added');
       });
   }
   async deleteUser(id: number) {
@@ -56,6 +58,7 @@ export class UsersService {
         this.#state.set({
           users: this.users().filter((user: { id: number }) => user.id !== id),
         });
+        this.showSnackBar('User deleted');
       });
   }
 
@@ -69,6 +72,7 @@ export class UsersService {
             user.id === response.id ? response : user
           ),
         });
+        this.showSnackBar('User updated');
       });
   }
 
@@ -78,6 +82,16 @@ export class UsersService {
       .pipe(delay(1000))
       .subscribe((response) => {
         this.#userState.set({ user: response });
+        this.showSnackBar('User loaded');
       });
+
+  }
+
+  async showSnackBar(message: string, action?: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
   }
 }
