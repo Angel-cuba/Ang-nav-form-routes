@@ -34,6 +34,27 @@
       "email": "araozangel842@gmail.com",
       "password": "dvdchanged",
       "date": "2023-12-21"
+    },
+    {
+      "id": 1702765222679,
+      "name": "Test",
+      "email": "tes@gmail.com",
+      "password": "123456",
+      "date": "2023-12-20"
+    },
+    {
+      "id": 1702766111665,
+      "name": "Events",
+      "email": "angelito.cuba1984@gmail.com",
+      "password": "dvdchanged",
+      "date": "2023-12-22"
+    },
+    {
+      "id": 1702766953189,
+      "name": "Maria",
+      "email": "angelito.cuba1984@gmail.com",
+      "password": "dvdchanged",
+      "date": "2023-12-20"
     }
   ]
 }

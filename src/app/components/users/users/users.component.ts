@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { UsersService } from '../../../service/users.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, MatSnackBarModule],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
 })

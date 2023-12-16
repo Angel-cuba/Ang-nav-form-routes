@@ -10,11 +10,12 @@ import {
 import { CommonModule } from '@angular/common';
 import { UsersService } from '../../../service/users.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, RouterModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, RouterModule, MatSnackBarModule],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
 })

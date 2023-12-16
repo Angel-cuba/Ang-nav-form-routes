@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { delay } from 'rxjs';
 import { User } from '../../interfaces/interfaces';
 
@@ -26,7 +27,8 @@ export class UsersService {
 
   public users = computed(() => this.#state().users);
   public user = computed(() => this.#userState().user);
-  constructor() {
+
+  constructor( private snackBar: MatSnackBar ) {
     this.getUsers();
   }
 
