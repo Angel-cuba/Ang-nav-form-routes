@@ -61,6 +61,7 @@ export const routes: Routes = [
         pathMatch: 'full',
       },
     ],
+    canActivate: [],
   },
   {
     path: '',
@@ -68,8 +69,12 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: '**',
-    redirectTo: '/dashboard',
-    pathMatch: 'full',
-  },
+    path: 'login',
+    loadComponent() {
+      return import('./login/login.component').then(
+        (m) => m.LoginComponent
+      );
+    },
+    canActivate: [],
+  }
 ];
