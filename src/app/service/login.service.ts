@@ -22,13 +22,12 @@ export class LoginService {
   loadUsers() {
     this.http.get<UserLogin[]>(this.url).pipe(delay(1000)).subscribe((response) => {
       this.#state.set({ users: response });  
-      this.showSnackBar('Users loaded');
     });
   }
 
 
   async login(username: string, password: string) {
-    const user = this.#state().users.find((user: any) => user.username === username && user.password === password);
+    const user = this.#state().users.find((user: UserLogin) => user.username === username && user.password === password);
     if (user) {
       this.showSnackBar('Login success');
       return {
@@ -40,9 +39,22 @@ export class LoginService {
     return false;
   }
 
+  checkAuth() {
+    const user = localStorage.getItem('user');
+    if (!user) {
+      return false
+    }
+    return user
+  }
 
-  showSnackBar(message: string) {
-    this.snackBar.open(message, 'Welcome', {
+  logout() {
+    localStorage.removeItem('user');
+    this.showSnackBar('Logout success');
+  }
+
+
+  showSnackBar(message: string, action?: string) {
+    this.snackBar.open(message, action, {
       duration: 2000,
     });
   }

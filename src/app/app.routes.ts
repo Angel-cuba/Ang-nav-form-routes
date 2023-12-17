@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AuthGuard, LoggedUser } from './guards/auth-guard';
 
 export const routes: Routes = [
   {
@@ -61,7 +62,7 @@ export const routes: Routes = [
         pathMatch: 'full',
       },
     ],
-    canActivate: [],
+    canActivate: [AuthGuard],
   },
   {
     path: '',
@@ -75,6 +76,6 @@ export const routes: Routes = [
         (m) => m.LoginComponent
       );
     },
-    canActivate: [],
+    canActivate: [LoggedUser],
   }
 ];

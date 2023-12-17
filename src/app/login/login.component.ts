@@ -10,7 +10,5 @@ import { FormComponent } from '../components/form/form.component';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-fields: any;
-button: any;
-
+constructor() {}
 }
