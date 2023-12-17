@@ -1,5 +1,5 @@
 <section>
- <form action="" method="post">
+ <form action="" method="post" [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="">
   <label for="username">Username</label>
   <input type="text" id="username" name="username" formControlName="username"
