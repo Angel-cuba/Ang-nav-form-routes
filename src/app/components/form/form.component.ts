@@ -25,7 +25,8 @@ export class FormComponent {
 
     this.service.login(username, password).then((response) => {
       if (response) {
-        localStorage.setItem('user', JSON.stringify(response));
+        const { id, role } = response;
+        localStorage.setItem('user', JSON.stringify({ id, role }));
         this.router.navigate(['/dashboard']);
       }
     })
